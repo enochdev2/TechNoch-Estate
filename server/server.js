@@ -1,13 +1,27 @@
 import express  from "express";
+import mongoose from "mongoose";
+import dotenv from 'dotenv'
+import cookieParser from "cookie-parser";
+import authRouter from "./routes/authRoute.js"
+
+dotenv.config();
+
+
+
 
 const app = express();
+const PORT = process.env.PORT
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+    
+    app.listen(PORT || 4000, () => {
+        console.log(`app running on port : ${PORT}`)
+    })
+}).catch((error)=> console.log(error.message))
 
-const PORT = 4000
-app.get("/", (res, req)=>{
-    res.json({message: "my test"}
-    )
-})
+app.use(express.json());
+app.use(cookieParser());
 
-app.listen(PORT, () => {
-    console.log(`app running on port : ${PORT}`)
-})
+
+app.use('/api/auth', authRouter);
+
+
