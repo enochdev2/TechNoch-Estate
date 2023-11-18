@@ -1,28 +1,28 @@
 import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
-// import {
-//   getDownloadURL,
-//   getStorage,
-//   ref,
-//   uploadBytesResumable,
-// } from 'firebase/storage';
-// import { app } from '../firebase';
-// import {
-//   updateUserStart,
-//   updateUserSuccess,
-//   updateUserFailure,
-//   deleteUserFailure,
-//   deleteUserStart,
-//   deleteUserSuccess,
-//   signOutUserStart,
-// } from '../redux/user/userSlice';
-// import { useDispatch } from 'react-redux';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
+import { app } from '../../firebase';
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  signOutUserStart,
+} from '../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
 export default function Profile() {
   const fileRef = useRef(null);
-  // const { currentUser, loading, error } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
@@ -30,7 +30,7 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // firebase storage
   // allow read;
@@ -74,58 +74,58 @@ export default function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   dispatch(updateUserStart());
-    //   const res = await fetch(`/api/user/update/${currentUser._id}`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     dispatch(updateUserFailure(data.message));
-    //     return;
-    //   }
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
 
-    //   dispatch(updateUserSuccess(data));
-    //   setUpdateSuccess(true);
-    // } catch (error) {
-    //   dispatch(updateUserFailure(error.message));
-    // }
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
   };
 
   const handleDeleteUser = async () => {
-    // try {
-    //   dispatch(deleteUserStart());
-    //   const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-    //     method: 'DELETE',
-    //   });
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     dispatch(deleteUserFailure(data.message));
-    //     return;
-    //   }
-    //   dispatch(deleteUserSuccess(data));
-    // } catch (error) {
-    //   dispatch(deleteUserFailure(error.message));
-    // }
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
   };
 
   const handleSignOut = async () => {
-    // try {
-    //   dispatch(signOutUserStart());
-    //   const res = await fetch('/api/auth/signout');
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     dispatch(deleteUserFailure(data.message));
-    //     return;
-    //   }
-    //   dispatch(deleteUserSuccess(data));
-    // } catch (error) {
-    //   dispatch(deleteUserFailure(data.message));
-    // }
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
   };
 
   const handleShowListings = async () => {
