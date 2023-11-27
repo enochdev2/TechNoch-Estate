@@ -129,38 +129,38 @@ export default function Profile() {
   };
 
   const handleShowListings = async () => {
-    // try {
-    //   setShowListingsError(false);
-    //   const res = await fetch(`/api/user/listings/${currentUser._id}`);
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     setShowListingsError(true);
-    //     return;
-    //   }
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
 
-    //   setUserListings(data);
-    // } catch (error) {
-    //   setShowListingsError(true);
-    // }
+      setUserListings(data);
+    } catch (error) {
+      setShowListingsError(true);
+    }
   };
 
   const handleListingDelete = async (listingId) => {
-    // try {
-    //   const res = await fetch(`/api/listing/delete/${listingId}`, {
-    //     method: 'DELETE',
-    //   });
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     console.log(data.message);
-    //     return;
-    //   }
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
 
-    //   setUserListings((prev) =>
-    //     prev.filter((listing) => listing._id !== listingId)
-    //   );
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
 
