@@ -1,8 +1,13 @@
 import React from 'react'
+import hero from '../../assets/hero-img.jpg'
+
 
 export default function About() {
   return (
-    <div className='py-20 px-4 max-w-6xl mx-auto'>
+    <div className='py-10 px-4 max-w-6xl mx-auto'>
+       <div className='h-96 w-full overflow-hidden mt-2'>
+        <img src={hero} alt="hero" className='h-full w-full' />
+      </div>
       <h1 className='text-3xl font-bold mb-4 text-slate-800'>About TechNoch Estate</h1>
       <p className='mb-4 text-slate-700 text-xl'>TechNoch Estate is a leading real estate agency that specializes in helping clients buy, sell, and rent properties in the most desirable neighborhoods. Our team of experienced agents is dedicated to providing exceptional service and making the buying and selling process as smooth as possible.</p>
       <p className='mb-4 text-xl text-slate-700'>
