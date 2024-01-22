@@ -55,7 +55,7 @@ export default function Header() {
             </li>
           </Link>
           <Link to="/listings">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="block text-sm my-auto sm:inline text-slate-700 hover:underline">
               Listing
             </li>
           </Link>
@@ -67,7 +67,7 @@ export default function Header() {
           <Link to={currentUser ? "/profile" : "/sign-in"}>
             {currentUser ? (
               <img
-                className="rounded-full h-7 w-7 object-cover"
+                className="rounded-full  sm:h-7 sm:w-7 object-cover"
                 src={currentUser.avatar}
                 alt="profile"
               />
