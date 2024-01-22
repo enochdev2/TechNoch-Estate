@@ -50,7 +50,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className='overflow-x-hidden w-full'>
       {/* top */}
       <div className='h-96 w-full overflow-hidden mt-8'>
         <img src={hero} alt="hero" className='h-full w-full' />

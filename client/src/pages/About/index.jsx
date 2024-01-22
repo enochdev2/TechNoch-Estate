@@ -4,7 +4,7 @@ import hero from '../../assets/hero-img.jpg'
 
 export default function About() {
   return (
-    <div className='py-10 px-4 max-w-6xl mx-auto'>
+    <div className='py-10 px-4 sm:max-w-6xl w-full overflow-x-hidden mx-auto'>
        <div className='h-96 w-full overflow-hidden mt-2'>
         <img src={hero} alt="hero" className='h-full w-full' />
       </div>
